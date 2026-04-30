@@ -2,15 +2,15 @@ package com.example;
 
 import java.util.ArrayList;
 
-import com.example.ABB.ArbolBinario;
+import com.example.ABB.ABB;
 import com.example.ABB.TDAElemento;
 
 public class SistemaGrimorioArchimago {
-    public SistemaGrimorioArchimago(ArbolBinario arbol) {
+    public SistemaGrimorioArchimago(ABB arbol) {
   //      this.tamaño = arbol.cantidadNodos();
     }
 
-    ArbolBinario<Hechizo> arbolBinario=new ArbolBinario<>();
+    ABB<Hechizo> arbolBinario=new ABB<>();
     public void agregarHechizo(Hechizo hechizo) {
         arbolBinario.insertar(hechizo);
     }

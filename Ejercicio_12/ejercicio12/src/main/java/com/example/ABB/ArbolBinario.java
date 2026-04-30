@@ -38,7 +38,7 @@ public class ArbolBinario<T> implements TDAArbolBinario<T> {
 
     public boolean insertar(Comparable<T> dato) {
         if (raiz == null) {
-            raiz = new ElementoABB<T>((T) dato);
+            raiz = new Elemento<T>((T) dato);
             return true;
         }
         return raiz.insertar(dato);
