@@ -8,19 +8,19 @@ FUNCION sustituirArbolAritmetico (nodo, valor)
 
 SI nodo == null
 
-devolver “Arbol vacío” //O error o lanzar una excepción
+  devolver “Arbol vacío” //O error o lanzar una excepción
 
 FIN SI
 
 SI nodo.esHoja ()
 
-SI valor.contiene(nodo.dato)
+  SI valor.contiene(nodo.dato)
 
-devolver  valor[nodo.dato]
+    devolver  valor[nodo.dato]
 
-SINO
+  SINO
 
-devolver ERROR // La variable no tiene valor en el diccionario
+    devolver ERROR // La variable no tiene valor en el diccionario
 
 FIN SI
 
@@ -32,31 +32,31 @@ derecho = sustituirArbolAritmetico (nodo.getHijoderecho, valor)
 
 SI nodo.dato == “+”
 
-devolver izquierdo + derecho
+  devolver izquierdo + derecho
 
 SINO SI nodo.dato == ”-”
 
-devolver izquierdo - derecho
+  devolver izquierdo - derecho
 
 SINO SI nodo.dato == ”*”
 
-devolver izquierdo * derecho
+  devolver izquierdo * derecho
 
 SINO SI nodo.dato == ”/”
 
-SI derecho  !=0 
+  SI derecho  !=0 
 
-devolver izquierdo / derecho
+    devolver izquierdo / derecho
 
-SINO
+  SINO
 
-devolver ERROR // O una execpción
+  devolver ERROR // O una execpción
 
 FINSI
 
 SINO
 
-devolver ERROR // El operador no es suma, resta, div o multi
+  devolver ERROR // El operador no es suma, resta, div o multi
 
 FIN SI
 
