@@ -1,0 +1,65 @@
+Para representar expresiones  aritméticas en un árbol, se evalúa en recorrido POSTORDEN, hijo izquierdo, derecho y al final la raíz que seria el operador. Se realiza cada operación según el operador. Se chequea si el nodo está vacío, si es una hoja y si no es hoja.
+
+Pre: el árbol no es vacío, los nodos internos contienen únicamente operadores, los hoja contienen constates o variables
+
+Post: No se modifica la estructura el arbol, mas si se pueden haber sustituido variables por valores, se retorna el resultado de la evaluación de la expresión, si hubo division entre 0 aparece error.
+
+FUNCION sustituirArbolAritmetico (nodo, valor)
+
+SI nodo == null
+
+devolver “Arbol vacío” //O error o lanzar una excepción
+
+FIN SI
+
+SI nodo.esHoja ()
+
+SI valor.contiene(nodo.dato)
+
+devolver  valor[nodo.dato]
+
+SINO
+
+devolver ERROR // La variable no tiene valor en el diccionario
+
+FIN SI
+
+FIN SI
+
+izquierdo =  sustituirArbolAritmetico (nodo.getHijoizquierdo, valor)
+
+derecho = sustituirArbolAritmetico (nodo.getHijoderecho, valor)
+
+SI nodo.dato == “+”
+
+devolver izquierdo + derecho
+
+SINO SI nodo.dato == ”-”
+
+devolver izquierdo - derecho
+
+SINO SI nodo.dato == ”*”
+
+devolver izquierdo * derecho
+
+SINO SI nodo.dato == ”/”
+
+SI derecho  !=0 
+
+devolver izquierdo / derecho
+
+SINO
+
+devolver ERROR // O una execpción
+
+FINSI
+
+SINO
+
+devolver ERROR // El operador no es suma, resta, div o multi
+
+FIN SI
+
+FIN
+
+Una solución distinta podría ser crear dos funciones, una que sustituya las variables por valores y después evaluarlo. Se uso un diccionario para facilitar la búsqueda con el ”contiene”. Con la lista tendría una de valores y otra de variables.
