@@ -59,7 +59,7 @@ private TDAElemento<T> hijoIzq;
      * Busca un nodo por un criterio de búsqueda. Si no se encuentra, retorna
      * nulo.
      */
-    public TDAElemento<T> buscar(Comparable<T> criterioBusqueda) { //PROBADO
+    public TDAElemento<T> buscar(Comparable<T> criterioBusqueda) {
         int comparacion = criterioBusqueda.compareTo(this.getDato());
         if (comparacion == 0) {
             return (this);
@@ -83,7 +83,7 @@ private TDAElemento<T> hijoIzq;
      * Elimina un nodo del árbol según el criterio de búsqueda. Si se encuentra,
      * se retorna el nodo borrado. En otro caso retornar null.
      */
-    public TDAElemento<T> eliminar(Comparable<T> criterioBusqueda) { //PROBADO
+    public TDAElemento<T> eliminar(Comparable<T> criterioBusqueda) { 
         if (criterioBusqueda.compareTo(this.getDato()) == 0) {
             if (this.getHijoIzquierdo() == null && this.getHijoDerecho() == null) { //nodo hoja
                 return null;
@@ -101,9 +101,7 @@ private TDAElemento<T> hijoIzq;
                 padreAux = aux;
                 aux = aux.getHijoDerecho();
             }
-            // copiar dato
             this.setDato(aux.getDato());
-            // eliminar el nodo duplicado
             if (padreAux == this) {
                 padreAux.setHijoIzquierdo(aux.getHijoIzquierdo());
             } else {
@@ -125,7 +123,7 @@ private TDAElemento<T> hijoIzq;
     /**
      * Agrega un nuevo elemento al árbol Si el nuevoDato existe, no se agrega
      */
-    public boolean insertar(Comparable<T> nuevoDato) { //PROBADO (ambos)
+    public boolean insertar(Comparable<T> nuevoDato) { 
         if (this.getHijoIzquierdo() == null) {
         this.setHijoIzquierdo(new Elemento<T>((T) nuevoDato));
         return true;
@@ -148,7 +146,7 @@ private TDAElemento<T> hijoIzq;
      *     // esta función se llama tantas veces como nodos halla en el árbol
      * }); }
      */
-    public void inOrder(Consumer<TDAElemento<T>> consumidor) { //PROBADO
+    public void inOrder(Consumer<TDAElemento<T>> consumidor) { 
         if (this.hijoIzq != null) {
             this.hijoIzq.inOrder(consumidor);
         }
@@ -166,7 +164,7 @@ private TDAElemento<T> hijoIzq;
      *     // esta función se llama tantas veces como nodos halla en el árbol
      * }); }
      */
-    public void preOrder(Consumer<TDAElemento<T>> consumidor) { //PROBADO
+    public void preOrder(Consumer<TDAElemento<T>> consumidor) { 
         consumidor.accept(this);
         if (this.hijoIzq != null) {
             this.hijoIzq.preOrder(consumidor);
@@ -184,7 +182,7 @@ private TDAElemento<T> hijoIzq;
      *     // esta función se llama tantas veces como nodos halla en el árbol
      * }); }
      */
-    public void postOrder(Consumer<TDAElemento<T>> consumidor) { //PROBADO
+    public void postOrder(Consumer<TDAElemento<T>> consumidor) { 
         if (this.hijoIzq != null) {
             this.hijoIzq.postOrder(consumidor);
         }
@@ -208,7 +206,7 @@ private TDAElemento<T> hijoIzq;
     /**
      * retorna la cantidad de nodos que son hojas
      */
-    public int cantidadHojas() { //PROBADO
+    public int cantidadHojas() { 
         if (this.esHoja()) {
             return (1);
         }
@@ -225,7 +223,7 @@ private TDAElemento<T> hijoIzq;
     /**
      * retorna la cantidad de nodos que no son hojas
      */
-    public int cantidadNodosInternos() { //PROBADO
+    public int cantidadNodosInternos() { 
         int total = 0;
         if ((this.getHijoIzquierdo() == null) && (this.getHijoDerecho() == null)) {
             return (0);
@@ -243,7 +241,7 @@ private TDAElemento<T> hijoIzq;
     /**
      * retorna la cantidad de nodos que los compone
      */
-    public int cantidadNodos() { //PROBADO
+    public int cantidadNodos() { 
         int total = 0;
         if (this.esHoja()) {
             return (1);
@@ -258,7 +256,7 @@ private TDAElemento<T> hijoIzq;
         return (total);
     }
 
-    public int altura() { //PROBADO
+    public int altura() {
         if (this.esHoja()) {
             return (0); //si el nodo no tiene hijos la altura es cero
         }
@@ -276,7 +274,7 @@ private TDAElemento<T> hijoIzq;
         return (total);
     }
 
-    public int obtenerNivel(Comparable<T> criterioBusqueda) { //PROBADO
+    public int obtenerNivel(Comparable<T> criterioBusqueda) { 
         if (criterioBusqueda.compareTo(this.getDato()) == 0) {
             return 0;
         }

@@ -11,7 +11,7 @@ public class ABB<T> extends ArbolBinario<T>{
     }
 
     @Override
-    public T buscar(Comparable<T> predicate) { //HECHO
+    public T buscar(Comparable<T> predicate) { 
         if (this.raiz==null) {
             return(null);
         } else {
@@ -20,7 +20,7 @@ public class ABB<T> extends ArbolBinario<T>{
     }
 
     @Override
-    public boolean insertar(Comparable<T> dato) { //HECHO
+    public boolean insertar(Comparable<T> dato) { 
         if (raiz == null) {
             raiz = new ElementoABB<T>((T) dato);
             return (true);
@@ -31,7 +31,7 @@ public class ABB<T> extends ArbolBinario<T>{
     }
 
     @Override
-    public boolean eliminar(Comparable<T> criterioBusqueda) { //HECHO
+    public boolean eliminar(Comparable<T> criterioBusqueda) {
         TDAElemento<T> padre = null;
         TDAElemento<T> actual = raiz;
         while (actual != null && criterioBusqueda.compareTo(actual.getDato()) != 0) {
