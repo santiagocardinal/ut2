@@ -1,0 +1,103 @@
+Ej12:
+Construir el grimorio:
+public bool construirGrimorio(T dato) {
+	si raiz==null hacer
+		raiz<-nuevo Nodo(dato)
+		devolver verdadero
+	fin si
+	si dato.compareTo(raíz.getDato) < 0 hacer
+		si raiz.getHijoIzquierdo==null hacer
+			raiz.setHijoIzquierdo(nuevo Nodo(dato))
+			devolver verdadero
+		fin si
+		devolver raiz.getHijoIzquierdo.insertar(dato)
+	fin si
+	si dato.compareTo(raíz.getDato) > 0 hacer
+		si raiz.getHijoDerecho==null hacer
+			raiz.setHijoDerecho(nuevo Nodo(dato))
+			devolver verdadero
+		fin si
+		devolver raiz.getHijoDerecho.insertar(dato)
+	fin si
+	devolver falso
+}
+
+Consultar hechizos prohibidos:
+Se hace el recorrido inorden del árbol binario de búsqueda de hechizos consultando en cada nodo si el id de ese nodo deja resto distinto de cero en la división entre dos (números impares, hechizos prohíbidos), si es el caso, se agrega ese hechizo a una lista inicialmente vacía. Después de que se recorra todo el árbol se devuelve la lista con todos los hechizos cuyo id es impar.
+
+Precondiciones:
+-Árbol binario de búsqueda no null.
+-Cada nodo no nulo del árbol tiene el id (int) y el nombre (string) del hechizo.
+
+Postcondiciones:
+-Debe devolver una lista con los hechizos prohibidos, ordenados de menor a mayor según el id del hechizo (se hizo un recorrido inorden).
+-El árbol no debería haber sido modificado.
+
+Pseudocódigo:
+Lista listaHechizosProhibidos <- nueva Lista vacia
+Lista consultarHechizosProhibidos(NodoÁrbol nodo) {
+	si nodo==null
+		devolver listaHechizosProhibidos
+	fin si
+	si nodo.hijoIzquierdo<>null hacer
+		nodo.hijoIzquierdo.consultarHechizosProhibidos
+	fin si
+	si nodo.id %2 <>0 hacer
+		listaHechizosProhibidos.agregar(nodo)
+	fin si
+	si nodo.hijoDerecho<>null hacer
+		nodo.hijoDerecho.consultarHechizosProhibidos
+	fin si	
+	devolver listaHechizosProhibidos	
+}
+
+
+Análisis de tiempo de ejecución: es de complejidad O(N), porque se ejecuta tantas veces como nodos haya en el árbol, se va analizando cada uno de los nodos del árbol verificando si su id es divisible o no entre dos y agregándolo o no a la lista.
+
+
+
+
+Generar cántico:
+Se hace el recorrido inorden del árbol binario de búsqueda de hechizos consultando en cada nodo si el id de ese nodo deja resto distinto de cero en la división entre 2 (números impares/ hechizos prohibidos), si es el caso, se concatena el nombre de ese hechizo a una cadena inicialmente vacía. Después de que se recorra todo el árbol se devuelve la cadena con todos los hechizos cuyo id es impar.
+
+Precondiciones:
+-Árbol binario de búsqueda no null.
+-Cada nodo no nulo del árbol tiene el id (int) y el nombre (string) del hechizo.
+
+Postcondiciones:
+-Debe devolver una cadena con los hechizos prohibidos separados por un guion, ordenados de menor a mayor según el id del hechizo (se hizo un recorrido inorden).
+-El árbol no debería haber sido modificado.
+
+Pseudocódigo:
+int contador<-0;
+int tamañoArbol
+String GenerarCantico(NodoÁrbol nodo) { //se ingresa como parámetro la raíz del árbol (o el nodo desde el que se recorre el árbol).
+	si nodo==null hacer
+		devolver ""
+	fin si
+	si contador==0 hacer
+		tamaño<-nodo.cantidadNodos
+	fin si
+	Cadena cadenaHechizosProhibidos<-""
+	contador<-contador+1 //cuenta las veces que entra a la llamada (igual a la cantidad de nodos del árbol)
+	si nodo.hijoIzquierdo<>null hacer //se ejecuta el hijo izquierdo primero 
+		Cadena iquierdo <- GenerarCantico(nodo.hijoIzquierdo)
+		cadenaHechizosProhibidos<-cadenaHechizosProhibidos+izquierdo
+	fin si
+	si nodo.id %2 <>0 hacer //se ejecuta el nodo en si
+		cadenaHechizosProhibidos<-cadenaHechizosProhibidos+nodo.nombre+"-"
+	fin si
+	si nodo.hijoDerecho<>null hacer	//se ejecuta el hijo derecho
+		Cadena derecho <- GenerarCantico(nodo.hijoDerecho)
+		cadenaHechizosProhibidos<-cadenaHechizosProhibidos+derecho
+	fin si	
+	si contador==tamañoArbol hacer
+		si cadenaHechizosProhibidos.terminacon(-) hacer
+			cadenaHechizosProhibidos<-cadenaHechizosProhibidos.subCadena(0, cadenaHechizos.largo-1)
+		fin si
+	fin si
+	devolver cadenaHechizosProhibidos	
+}
+
+
+Análisis de tiempo de ejecución: O(N), porque se ejecuta tantas veces como nodos haya en el árbol, se va analizando cada nodo del árbol viendo si su id es divisible o no entre 2 y concatenándolo o no a la String.
